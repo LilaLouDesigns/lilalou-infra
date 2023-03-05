@@ -41,3 +41,31 @@ resource "aws_subnet" "subnet-db-private" {
     Name = "${var.basename}-db-private-${each.key}"
   }
 }
+
+resource "aws_internet_gateway" "lou-igw" {
+  vpc_id = aws_vpc.lou.id
+
+  tags = {
+    Name = "${var.basename}-igw"
+  }
+}
+
+resource "aws_route_table" "public-rt" {
+  vpc_id = aws_vpc.lou.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.lou-igw.id
+  }
+
+  tags = {
+    Name = "${var.basename}-public"
+  }
+}
+
+resource "aws_route_table_association" "public" {
+  for_each = aws_subnet.subnet-public
+
+  subnet_id      = each.value.id
+  route_table_id = aws_route_table.public-rt.id
+}
