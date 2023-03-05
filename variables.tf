@@ -17,6 +17,10 @@ variable "subnet-public" {
 }
 
 variable "basename" {
-   description = "Prefix used for all resources names"
-   default = "nbo"
+   description = "Prefix used for all resource names"
+   default = "lou"
+}
+
+variable "profile" {
+   description = "AWS CLI profile name"
 }

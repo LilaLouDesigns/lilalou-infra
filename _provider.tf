@@ -21,5 +21,5 @@ provider "aws" {
   region = "ap-southeast-4"
   # shared_config_files      = ["/Users/ngarampling/.aws/config"]
   # shared_credentials_files = ["/Users/ngarampling/.aws/credentials"]
-  # profile                  = "terraform-lou"
+  profile                  = var.profile
 }
