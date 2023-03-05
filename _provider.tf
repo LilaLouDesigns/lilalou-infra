@@ -8,10 +8,10 @@ terraform {
   }
   backend "s3" {
     region = "ap-southeast-4"
-    bucket = "terraform-state-lilalou"
-    key    = "terraform.tfstate"
-    dynamodb_table = "terraform-lock"
-    encrypt = true
+    #bucket = "terraform-state-lilalou"
+    key                    = "terraform.tfstate"
+    dynamodb_table         = "terraform-lock"
+    encrypt                = true
     skip_region_validation = true
   }
 }
@@ -21,5 +21,5 @@ provider "aws" {
   region = "ap-southeast-4"
   # shared_config_files      = ["/Users/ngarampling/.aws/config"]
   # shared_credentials_files = ["/Users/ngarampling/.aws/credentials"]
-  # profile                  = "terraform-lou"
+  profile = var.profile
 }
