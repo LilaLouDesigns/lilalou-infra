@@ -50,6 +50,8 @@ resource "aws_internet_gateway" "lou-igw" {
   }
 }
 
+# Creates PUBLIC Route Tables, Routes and Associations
+
 resource "aws_route_table" "public-rt" {
   vpc_id = aws_vpc.lou.id
 
@@ -68,4 +70,28 @@ resource "aws_route_table_association" "public" {
 
   subnet_id      = each.value.id
   route_table_id = aws_route_table.public-rt.id
+}
+
+# Creates PRIVATE Route Tables, Routes and Associations
+
+resource "aws_route_table" "private-rt" {
+  vpc_id = aws_vpc.lou.id
+
+  tags = {
+    Name = "${var.basename}-private"
+  }
+}
+
+resource "aws_route_table_association" "web-private" {
+  for_each = aws_subnet.subnet-web-private
+
+  subnet_id      = each.value.id
+  route_table_id = aws_route_table.private-rt.id
+}
+
+resource "aws_route_table_association" "db-private" {
+  for_each = aws_subnet.subnet-db-private
+
+  subnet_id      = each.value.id
+  route_table_id = aws_route_table.private-rt.id
 }
