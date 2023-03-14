@@ -8,3 +8,5 @@
 
 # terraform plan files
 *.tfplan
+
+.DS_Store
