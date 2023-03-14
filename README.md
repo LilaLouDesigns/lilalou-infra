@@ -6,10 +6,10 @@ Owner: Lila Lou Designs
 # Terraform Commands
 ## Multi env backend initialisation
 ### Dev
-terraform init -reconfigure -backend-config=bucket=terraform-state-lilalou-dev -backend-config=profile=tf-lou-dev
+terraform init -reconfigure -backend-config=bucket=${TF_BUCKET_PREFIX}-dev -backend-config=profile=tf-lou-dev
 
 ### Prod
-terraform init -reconfigure -backend-config=bucket=terraform-state-lilalou-prod -backend-config=profile=tf-lou-prod
+terraform init -reconfigure -backend-config=bucket=${TF_BUCKET_PREFIX}-prod -backend-config=profile=tf-lou-prod
 
 ## Terraform Plan
 ### Dev
