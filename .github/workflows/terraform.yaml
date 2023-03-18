@@ -61,9 +61,9 @@ jobs:
           PLAN: "terraform\n${{ steps.plan-dev.outputs.stdout }}"
         with:
           script: |
-           const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt-dev.outcome }}\`
-           #### Terraform Initialization ⚙️\`${{ steps.init-dev.outcome }}\`
-           #### Terraform Validation 🤖\`${{ steps.validate-dev.outcome }}\`
+           const output = `#### Terraform Format and Style - DEV 🖌\`${{ steps.fmt-dev.outcome }}\`
+           #### Terraform Initialization - DEV ⚙️\`${{ steps.init-dev.outcome }}\`
+           #### Terraform Validation - DEV 🤖\`${{ steps.validate-dev.outcome }}\`
            #### Terraform Plan - DEV 📖\`${{ steps.plan-dev.outcome }}\`
  
            <details><summary>Show Plan</summary>
@@ -133,10 +133,10 @@ jobs:
           PLAN: "terraform\n${{ steps.plan-prod.outputs.stdout }}"
         with:
           script: |
-           const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt-prod.outcome }}\`
-           #### Terraform Initialization ⚙️\`${{ steps.init-prod.outcome }}\`
-           #### Terraform Validation 🤖\`${{ steps.validate-prod.outcome }}\`
-           #### Terraform Plan 📖\`${{ steps.plan-prod.outcome }}\`
+           const output = `#### Terraform Format and Style - PROD 🖌\`${{ steps.fmt-prod.outcome }}\`
+           #### Terraform Initialization - PROD ⚙️\`${{ steps.init-prod.outcome }}\`
+           #### Terraform Validation - PROD 🤖\`${{ steps.validate-prod.outcome }}\`
+           #### Terraform Plan - PROD 📖\`${{ steps.plan-prod.outcome }}\`
  
            <details><summary>Show Plan</summary>
  
