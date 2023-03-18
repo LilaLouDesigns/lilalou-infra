@@ -47,3 +47,9 @@ jobs:
       - name: Terraform validate
         id: validate
         run: terraform validate
+      
+      - name: Terraform plan
+        id: plan
+        if: github.event_name == "pull_request"
+        run: terraform plan -var-file=env/dev.tfvars -out=dev.tfplan -no-color -input=false
+        continue-on-error: true
