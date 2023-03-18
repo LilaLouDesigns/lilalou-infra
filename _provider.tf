@@ -17,6 +17,6 @@ terraform {
 
 # Configure the AWS Provider
 provider "aws" {
-  region  = "ap-southeast-4"
-  profile = var.profile
+  region = "ap-southeast-4"
+  # profile = var.profile
 }
