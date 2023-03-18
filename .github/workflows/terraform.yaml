@@ -40,13 +40,15 @@ jobs:
         id: init-dev
         run: terraform init -reconfigure -backend-config=bucket=$BUCKET_TF_STATE
 
-      # Quality checks
+      # Quality checks DEV
       - name: Terraform format
         id: fmt-dev
+        if: github.event_name == 'pull_request'
         run: terraform fmt -check
 
       - name: Terraform validate
         id: validate-dev
+        if: github.event_name == 'pull_request'
         run: terraform validate
       
       - name: Terraform plan - dev
@@ -112,13 +114,15 @@ jobs:
         id: init-prod
         run: terraform init -reconfigure -backend-config=bucket=$BUCKET_TF_STATE
 
-      # Quality checks
+      # Quality checks PROD
       - name: Terraform format
         id: fmt-prod
+        if: github.event_name == 'pull_request'
         run: terraform fmt -check
 
       - name: Terraform validate
         id: validate-prod
+        if: github.event_name == 'pull_request'
         run: terraform validate
       
       - name: Terraform plan - prod
