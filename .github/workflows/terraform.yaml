@@ -64,7 +64,7 @@ jobs:
            const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt-dev.outcome }}\`
            #### Terraform Initialization ⚙️\`${{ steps.init-dev.outcome }}\`
            #### Terraform Validation 🤖\`${{ steps.validate-dev.outcome }}\`
-           #### Terraform Plan 📖\`${{ steps.plan-dev.outcome }}\`
+           #### Terraform Plan - DEV 📖\`${{ steps.plan-dev.outcome }}\`
  
            <details><summary>Show Plan</summary>
  
@@ -90,10 +90,9 @@ jobs:
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -auto-approve -input=false
 
-# Terraform Prod
-  terraform-prod:
+# Terraform Prod CI
+  terraform-prod-ci:
     name: "Terraform Infra CICD Prod"
-    needs: terraform-dev
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -158,7 +157,3 @@ jobs:
       - name: Terraform Plan Status
         if: steps.plan-prod.outcome == 'failure'
         run: exit 1
-
-      - name: Terraform Apply
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -auto-approve -input=false
