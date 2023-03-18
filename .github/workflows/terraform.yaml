@@ -51,7 +51,7 @@ jobs:
       - name: Terraform plan
         id: plan
         if: github.event_name == 'pull_request'
-        run: terraform plan -var-file=env/dev.tfvars -out=dev.tfplan -no-color -input=false
+        run: terraform plan -var-file=env/dev.tfvars -no-color -input=false
         continue-on-error: true
 
       - uses: actions/github-script@v6
@@ -87,4 +87,4 @@ jobs:
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -input=false dev.tfplan
+        run: terraform apply -input=false
