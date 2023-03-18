@@ -57,6 +57,6 @@ variable "basename" {
   default     = "lou"
 }
 
-variable "profile" {
-  description = "AWS CLI profile name"
-}
+# variable "profile" {
+#   description = "AWS CLI profile name"
+# }
